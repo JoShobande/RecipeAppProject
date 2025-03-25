@@ -1,18 +1,18 @@
 const Colors = {
-    primary: '#16a34a',
+    primary: '#129575',
     black: '#000000',
     white: '#ffffff',
     gray: '#9ca3af',
     lightGray: '#f3f4f6',
     background: '#fefefe',
-    // overlay: 'rgba(0, 0, 0, 0.65)',
+    overlay: 'rgba(0, 0, 0, 0.70)',
   };
   
   const FontSizes = {
     small: 14,
     medium: 16,
     large: 20,
-    xlarge: 28,
+    xlarge: 48,
   };
   
   const Fonts = {

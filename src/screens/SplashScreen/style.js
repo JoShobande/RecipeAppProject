@@ -12,46 +12,71 @@ export default StyleSheet.create({
     flex: 1,
     width,
     height,
-    justifyContent: 'center',
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.70)',
+    backgroundColor: Colors.overlay,
   },
   contentContainer: {
     flex: 1,
+  },
+  topWrapper: {
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: 80,
-    zIndex: 2,
+    paddingBottom: 20,
   },
+  middleWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomWrapper: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: 20,
+    marginBottom: 40,
+  },
+
   topText: {
     color: Colors.white,
-    fontSize: FontSizes.medium,
-    fontFamily: Fonts.regular,
-    marginBottom: 5,
+    fontSize: 18, 
+    fontFamily: Fonts.bold,
+    fontWeight:'700',
   },
   title: {
     color: Colors.white,
-    fontSize: FontSizes.xlarge,
+    fontSize: 50, 
     fontFamily: Fonts.bold,
+    fontWeight:'700',
     marginBottom: 10,
+    marginBottom:0,
+    marginTop: 0
   },
   subtitle: {
     color: Colors.white,
-    fontSize: FontSizes.small,
+    fontSize: FontSizes.medium,
     fontFamily: Fonts.regular,
-    marginBottom: 30,
+    fontWeight:'700',
+    marginTop: 10,
   },
+
   button: {
     backgroundColor: Colors.primary,
-    paddingHorizontal: 30,
-    paddingVertical: 12,
+    paddingHorizontal: 35,
+    paddingVertical: 15,
     borderRadius: 8,
   },
   buttonText: {
     color: Colors.white,
     fontSize: FontSizes.medium,
     fontFamily: Fonts.bold,
+    fontWeight:'700',
+  },
+  hatImage: {
+    width: 100,  
+    height: 100,
+    marginBottom: 10,
   },
 });

@@ -1,11 +1,11 @@
-// src/screens/SplashScreen.js
 import React from 'react';
 import {
   View,
   Text,
   ImageBackground,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Image
 } from 'react-native';
 import styles from './style'
 
@@ -13,7 +13,6 @@ const { width, height } = Dimensions.get('window');
 
 export default function SplashScreen({ navigation }) {
   const handleStartCooking = () => {
-    // Navigate to Sign In, Home, or wherever you want
     navigation.navigate('SignIn'); 
   };
 
@@ -24,23 +23,30 @@ export default function SplashScreen({ navigation }) {
         style={styles.imageBackground}
         resizeMode="cover"
       >
+        {/* Dark overlay */}
         <View style={styles.overlay} />
 
         <View style={styles.contentContainer}>
-          <Text style={styles.topText}>100k+ Premium Recipe</Text>
+          <View style={styles.topWrapper}>
+            <Image
+              source={require('../../../assets/images/splash/chefhat.png')}
+              style={styles.hatImage}
+              resizeMode="contain"
+            />
+            <Text style={styles.topText}>100K+ Premium Recipe</Text>
+          </View>
 
-          <Text style={styles.title}>Get Cooking</Text>
+          <View style={styles.middleWrapper}>
+            <Text style={styles.title}>Get</Text> 
+            <Text style={styles.title}>Cooking</Text>
+            <Text style={styles.subtitle}>Simple way to find Tasty Recipe</Text>
+          </View>
 
-          <Text style={styles.subtitle}>
-            Simple way to find Tasty Recipe
-          </Text>
-
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleStartCooking}
-          >
-            <Text style={styles.buttonText}>Start Cooking  →</Text>
-          </TouchableOpacity>
+          <View style={styles.bottomWrapper}>
+            <TouchableOpacity style={styles.button} onPress={handleStartCooking}>
+              <Text style={styles.buttonText}>Start Cooking →</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ImageBackground>
     </View>
