@@ -4,7 +4,7 @@ import MainNavigator from './MainNavigator';
 import { useAuthContext } from '../context/AuthContext';
 
 export default function RootNavigation() {
-  const { user } = useAuthContext(); // example context usage
+  const { user } = useAuthContext();
 
   return (
     <NavigationContainer>
