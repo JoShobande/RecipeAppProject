@@ -231,6 +231,9 @@ export default StyleSheet.create({
     fontSize: 16,
     fontFamily: Fonts.bold,
     color: '#FFF',
+    width: 'auto',
+    padding: 8,
+    fontWeight: 700
   },
   categoryContainer: {
     marginBottom: 20,  // space below categories

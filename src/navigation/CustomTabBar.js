@@ -34,7 +34,7 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
         if (route.name === 'Home') {
           iconName = isFocused ? 'home' : 'home-outline';
         } else if (route.name === 'Favorites') {
-          iconName = isFocused ? 'heart' : 'heart-outline';
+          iconName = isFocused ? 'bookmark' : 'bookmark-outline';
         } else if (route.name === 'Notifications') {
           iconName = isFocused ? 'notifications' : 'notifications-outline';
         } else if (route.name === 'Profile') {
