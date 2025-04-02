@@ -35,6 +35,7 @@ export default StyleSheet.create({
     resizeMode: 'cover',
   },
   searchContainer: {
+    // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFFFFF', // use white or a slightly different color
@@ -49,7 +50,7 @@ export default StyleSheet.create({
     marginRight: 8,
   },
   searchInput: {
-    flex: 1,
+    // flex: 1,
     fontSize: FontSizes.medium,
     fontFamily: Fonts.regular,
     color: Colors.black,
@@ -155,8 +156,6 @@ export default StyleSheet.create({
   },
   searchRow: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     marginBottom: 20,
   },
   
@@ -169,7 +168,8 @@ export default StyleSheet.create({
     borderColor: '#D1D5DB',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 10,
+    backgroundColor: Colors.primary,
+    marginLeft:5
   },
   
   /* Filter Modal */
@@ -232,5 +232,29 @@ export default StyleSheet.create({
     fontFamily: Fonts.bold,
     color: '#FFF',
   },
+  categoryContainer: {
+    marginBottom: 20,  // space below categories
+    flexDirection: 'row',
+    // any additional styling you want
+  },
+  categoryItem: {
+    backgroundColor: '#F3F4F6',
+    borderRadius: 20,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    marginRight: 10,
+  },
+  categoryText: {
+    fontSize: 14,
+    fontFamily: Fonts.regular,
+    color: '#6B7280',
+  },
+  categoryItemSelected:{
+    backgroundColor:Colors.primary,
+  },
+  categoryTextSelected:{
+    color:Colors.white,
+    fontWeight: 700
+  }
   
 });
