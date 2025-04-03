@@ -75,7 +75,7 @@ export default function SignUpScreen() {
     if (!validateFields()) return;
     setIsLoading(true)
     try {
-      const userCredential = await signUp(email, password);
+      const userCredential = await signUp(email, password, fullName);
       // Update the user profile with the concatenated full name
       const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
       if (fullName) {

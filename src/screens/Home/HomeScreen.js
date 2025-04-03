@@ -19,6 +19,8 @@ import { getAuth } from 'firebase/auth';
 import { db } from '../../services/firebase';
 import SearchRecipeCard from '../../components/SearchRecipeCard/SearchRecipeCard';
 import { toggleBookmark } from '../../services/bookmark';
+import { useNavigation } from '@react-navigation/native';
+
 
 const { width } = Dimensions.get('window');
 const sideSpacing = 20; // consistent horizontal padding
@@ -37,8 +39,12 @@ const CATEGORIES = [
 // RecipeCard (for Home view grid)
 // --------------------------------------------------------------------
 function RecipeCard({ item, cardWidth, onToggleBookmark, isBookmarked}) {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={[styles.cardContainer, { width: cardWidth }]}>
+    <TouchableOpacity 
+      style={[styles.cardContainer, { width: cardWidth }]}
+      onPress={() => navigation.navigate('RecipeDetail', { recipe: item })}
+    >
       <View style={styles.cardImageWrapper}>
         <Image
           source={require('../../../assets/images/recipes/food.jpg')}
