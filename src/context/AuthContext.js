@@ -1,3 +1,4 @@
+// src/context/AuthContext.js
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import {
   onAuthStateChanged,
@@ -17,15 +18,20 @@ const createUserDocument = async (user, additionalData = {}) => {
   const userRef = doc(db, 'users', user.uid);
   const snapShot = await getDoc(userRef);
   if (!snapShot.exists()) {
-    const { displayName, email, photoURL } = user;
+    const { email, photoURL } = user;
     const createdAt = new Date();
+    const firstName = additionalData.firstName || '';
+    const lastName = additionalData.lastName || '';
+    const displayName = `${firstName} ${lastName}`.trim();
     try {
       await setDoc(userRef, {
         displayName,
+        firstName,
+        lastName,
         email,
-        photoURL,
+        bio: '',
         followers: [],
-        ...additionalData,
+        following: [],
         createdAt,
       });
     } catch (error) {
@@ -45,14 +51,13 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  // Updated signUp accepts a displayName parameter.
-  const signUp = async (email, password, displayName) => {
+  // Updated signUp now accepts firstName and lastName.
+  const signUp = async (email, password, firstName, lastName) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    if (displayName) {
-      await updateProfile(userCredential.user, { displayName });
-    }
-    // Create a Firestore user document
-    await createUserDocument(userCredential.user);
+    const fullName = `${firstName} ${lastName}`;
+    await updateProfile(userCredential.user, { displayName: fullName });
+    // Create a Firestore user document with firstName and lastName.
+    await createUserDocument(userCredential.user, { firstName, lastName });
     // Optionally, sign the user out after sign-up if desired.
     await signOut(auth);
     return userCredential;

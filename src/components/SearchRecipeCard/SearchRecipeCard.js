@@ -2,14 +2,16 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const defaultRecipeImage = require('../../../assets/images/recipes/food.jpg');
 
-const SearchRecipeCard = ({ item }) => {
+const SearchRecipeCard = ({ item}) => {
   const chefName = item.chef || 'Unknown';
+  const navigation = useNavigation();
 
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <TouchableOpacity style={styles.cardContainer} onPress={() => navigation.navigate('RecipeDetail', { recipe: item })}>
       <View style={styles.imageContainer}>
         <Image source={defaultRecipeImage} style={styles.cardImage} />
         {/* Rating badge at the top-right */}

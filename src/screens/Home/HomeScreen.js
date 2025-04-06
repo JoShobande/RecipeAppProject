@@ -10,16 +10,18 @@ import {
   Dimensions,
   Modal,
   ActivityIndicator,
+  Button,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './styles';
 import { Colors } from '../../constants/theme';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, doc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../../services/firebase';
 import SearchRecipeCard from '../../components/SearchRecipeCard/SearchRecipeCard';
 import { toggleBookmark } from '../../services/bookmark';
 import { useNavigation } from '@react-navigation/native';
+import {useAuthContext} from '../../context/AuthContext'
 
 
 const { width } = Dimensions.get('window');
@@ -40,6 +42,7 @@ const CATEGORIES = [
 // --------------------------------------------------------------------
 function RecipeCard({ item, cardWidth, onToggleBookmark, isBookmarked}) {
   const navigation = useNavigation();
+  const { logOut } = useAuthContext();
   return (
     <TouchableOpacity 
       style={[styles.cardContainer, { width: cardWidth }]}
@@ -93,11 +96,31 @@ function ListHeaderComponent({
   onSearchFocus,
   toggleFilterModal,
 }) {
+
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    if (currentUser) {
+      const userDocRef = doc(db, 'users', currentUser.uid);
+      const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
+        if (docSnap.exists()) {
+          setUserData(docSnap.data());
+        }
+      }, (error) => {
+        console.error("Error listening for user updates:", error);
+      });
+      return () => unsubscribe();
+    }
+  }, [currentUser]);
+
   return (
     <View style={{ marginTop: 40, marginBottom: 30 }}>
       <View style={styles.header}>
         <View>
-          <Text style={styles.greeting}>Hello Jega</Text>
+          <Text style={styles.greeting}>Hello {userData?.firstName} {userData?.lastName},</Text>
           <Text style={styles.subGreeting}>What are you cooking today?</Text>
         </View>
       </View>
@@ -231,6 +254,7 @@ export default function HomeScreen() {
 
   const auth = getAuth();
   const currentUser = auth.currentUser;
+
 
   useEffect(() => {
     const unsubscribe = onSnapshot(

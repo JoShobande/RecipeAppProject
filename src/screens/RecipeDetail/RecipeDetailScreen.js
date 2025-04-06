@@ -17,6 +17,7 @@ import { db } from '../../services/firebase';
 import * as Clipboard from 'expo-clipboard';
 import styles from './styles';
 import { Colors } from '../../constants/theme';
+import FollowButton from '../../components/FollowButton';
 
 const { width } = Dimensions.get('window');
 
@@ -253,8 +254,19 @@ export default function RecipeDetailScreen({ route, navigation }) {
         <TouchableOpacity
           style={styles.chefInfoContainer}
           onPress={() => {
-            if (recipeData.createdBy && recipeData.createdBy !== currentUser.uid) {
-              navigation.navigate('Profile', { userId: recipeData.createdBy });
+            if (recipeData.createdBy) {
+              // If the chef is not the logged-in user, pass isOtherProfile: true
+              if (recipeData.createdBy !== currentUser.uid) {
+                navigation.navigate('Main', { 
+                  screen: 'Profile', 
+                  params: { userId: recipeData.createdBy, isOtherProfile: true } 
+                });
+              } else {
+                navigation.navigate('Main', { 
+                  screen: 'Profile', 
+                  params: { userId: recipeData.createdBy } 
+                });
+              }
             }
           }}
         >
@@ -268,15 +280,10 @@ export default function RecipeDetailScreen({ route, navigation }) {
           />
           <View style={styles.chefInfo}>
             <Text style={styles.chefName}>{recipeData?.chef || 'Chef Name'}</Text>
-            <Text style={styles.chefLocation}>
-              {recipeData?.location || 'Location, Country'}
-            </Text>
           </View>
         </TouchableOpacity>
         {recipeData.createdBy !== currentUser.uid && (
-          <TouchableOpacity style={styles.followButton} onPress={handleFollowToggle}>
-            <Text style={styles.followButtonText}>{isFollowing ? 'Following' : 'Follow'}</Text>
-          </TouchableOpacity>
+          <FollowButton targetUserId={recipeData.createdBy} />
         )}
       </View>
 
@@ -306,10 +313,10 @@ export default function RecipeDetailScreen({ route, navigation }) {
         {activeTab === 'ingredients' ? (
           <View>
             <View style={styles.servingRow}>
-              <Text style={styles.servingText}>Serves 1</Text>
+              <Text style={styles.servingText}>Serves {recipeData?.servings}</Text>
               <Text style={styles.servingText}>{ingredientsData.length} items</Text>
             </View>
-            {ingredientsData.map((ing, index) => (
+            {recipeData?.ingredients?.map((ing, index) => (
               <View key={index} style={styles.ingredientItem}>
                 <Ionicons name="checkmark-circle" size={24} color={Colors.primary} style={styles.ingredientIcon} />
                 <View style={styles.ingredientInfo}>
@@ -321,12 +328,7 @@ export default function RecipeDetailScreen({ route, navigation }) {
           </View>
         ) : (
           <View>
-            {procedureData.map((step, index) => (
-              <View key={index} style={styles.stepContainer}>
-                <Text style={styles.stepNumber}>Step {index + 1}</Text>
-                <Text style={styles.stepText}>{step}</Text>
-              </View>
-            ))}
+            <Text>{recipeData.procedure}</Text>
           </View>
         )}
       </ScrollView>

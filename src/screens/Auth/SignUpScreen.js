@@ -73,20 +73,15 @@ export default function SignUpScreen() {
 
   const handleSignUp = async () => {
     if (!validateFields()) return;
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const userCredential = await signUp(email, password, fullName);
-      // Update the user profile with the concatenated full name
-      const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
-      if (fullName) {
-        await updateProfile(userCredential.user, { displayName: fullName });
-      }
-      // Show the success modal
+      // Pass firstName and lastName to signUp.
+      await signUp(email, password, firstName, lastName);
       setIsModalVisible(true);
     } catch (error) {
       Alert.alert('Sign Up Error', error.message);
-    }finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
 

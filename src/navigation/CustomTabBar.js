@@ -1,7 +1,8 @@
+// src/navigation/CustomTabBar.js
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Colors, FontSizes, Fonts } from '../constants/theme';
+import { Colors } from '../constants/theme';
 
 export default function CustomTabBar({ state, descriptors, navigation }) {
   return (
@@ -35,10 +36,16 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
           iconName = isFocused ? 'home' : 'home-outline';
         } else if (route.name === 'Favorites') {
           iconName = isFocused ? 'bookmark' : 'bookmark-outline';
-        } else if (route.name === 'Notifications') {
-          iconName = isFocused ? 'notifications' : 'notifications-outline';
+        } else if (route.name === 'Settings') {
+          iconName = isFocused ? 'settings' : 'settings-outline';
         } else if (route.name === 'Profile') {
-          iconName = isFocused ? 'person' : 'person-outline';
+          // If viewing another user's profile, always show the outline icon.
+          const routeParams = route.params || {};
+          if (routeParams.isOtherProfile) {
+            iconName = 'person-outline';
+          } else {
+            iconName = isFocused ? 'person' : 'person-outline';
+          }
         }
 
         return (
@@ -47,7 +54,11 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
             style={styles.tabButton}
             onPress={onPress}
           >
-            <Ionicons name={iconName} size={24} color={isFocused ? Colors.primary : '#B0B0B0'} />
+            <Ionicons
+              name={iconName}
+              size={24}
+              color={isFocused ? Colors.primary : '#B0B0B0'}
+            />
           </TouchableOpacity>
         );
       })}
@@ -84,7 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20, 
+    marginBottom: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
