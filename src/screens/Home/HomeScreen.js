@@ -1,4 +1,3 @@
-// src/screens/Home/HomeScreen.js
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -25,8 +24,8 @@ import {useAuthContext} from '../../context/AuthContext'
 
 
 const { width } = Dimensions.get('window');
-const sideSpacing = 20; // consistent horizontal padding
-const interItemSpacing = 10; // gap between columns
+const sideSpacing = 20; 
+const interItemSpacing = 10; 
 const cardWidth = (width - (2 * sideSpacing) - interItemSpacing) / 2;
 
 const CATEGORIES = [
@@ -128,7 +127,7 @@ function ListHeaderComponent({
         <View
           style={[
             styles.searchContainer,
-            { width: width - (2 * sideSpacing) - 54 }, // 54 = filter button width + margin
+            { width: width - (2 * sideSpacing) - 54 },
           ]}
         >
           <Ionicons name="search" size={20} color="#9CA3AF" style={styles.searchIcon} />
@@ -305,7 +304,6 @@ export default function HomeScreen() {
   const handleToggleBookmark = async (recipe) => {
     try {
       await toggleBookmark(recipe, currentUser.uid);
-      // onSnapshot will automatically update local state.
     } catch (error) {
       // Handle error as needed.
     }
@@ -332,9 +330,8 @@ export default function HomeScreen() {
     <SearchRecipeCard item={item} />
   );
 
-  // Handlers for search and filter modal
   const onSearchFocus = () => {
-    // Additional logic can be added here if needed.
+
   };
 
   const handleBackPress = () => {

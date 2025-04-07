@@ -26,18 +26,17 @@ export default function SettingsScreen({ navigation }) {
   const [saving, setSaving] = useState(false);
   const { logOut } = useAuthContext();
 
-  // Logout handler
+
   const handleLogout = async () => {
     try {
       await logOut();
-      // navigation.navigate('SignIn');
     } catch (error) {
       console.error('Error signing out:', error);
       Alert.alert('Error', 'There was an error signing out.');
     }
   };
 
-  // Set header logout icon button using useLayoutEffect.
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (

@@ -94,18 +94,16 @@ export default function ProfileScreen() {
           source={
             profileData?.photoURL
               ? { uri: profileData.photoURL }
-              : require('../../../assets/images/recipes/food.jpg')
+              : require('../../../assets/images/avatar.jpeg')
           }
           style={styles.avatar}
         />
         <Text style={styles.userName}>
-          {`${profileData?.firstName} ${profileData.lastName}`}
+          {`${profileData?.firstName} ${profileData?.lastName}`}
         </Text>
-        <Text style={styles.userRole}>
-          {isOtherProfile ? 'Chef' : 'Your Chef Profile'}
-        </Text>
+       
         <Text style={styles.userBio}>
-          {profileData?.bio || 'Passionate about food and life 🍜🍔'}
+          {profileData?.bio}
         </Text>
         {/* Stats Row */}
         <View style={styles.statsRow}>
@@ -130,7 +128,6 @@ export default function ProfileScreen() {
        
       </View>
 
-      {/* Tabs: Only show if viewing own profile */}
       {!isOtherProfile && (
         <View style={styles.tabRow}>
           <TouchableOpacity

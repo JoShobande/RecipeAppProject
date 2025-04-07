@@ -1,4 +1,3 @@
-// src/screens/Profile/styles.js
 import { StyleSheet, Dimensions } from 'react-native';
 import { Colors, Fonts, FontSizes } from '../../constants/theme';
 
@@ -14,7 +13,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  // Header / Profile Section
   headerSection: {
     alignItems: 'center',
     paddingTop: 40,
@@ -93,7 +91,6 @@ export default StyleSheet.create({
     color: Colors.primary,
     fontWeight: '700',
   },
-  // Recipe Grid
   listContainer: {
     paddingHorizontal: 20,
     paddingBottom: 80,
@@ -103,7 +100,6 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 20,
   },
-  // Empty State
   emptyContainer: {
     flex: 1,
     alignItems: 'center',

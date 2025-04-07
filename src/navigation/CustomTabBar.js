@@ -1,4 +1,3 @@
-// src/navigation/CustomTabBar.js
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -39,7 +38,6 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
         } else if (route.name === 'Settings') {
           iconName = isFocused ? 'settings' : 'settings-outline';
         } else if (route.name === 'Profile') {
-          // If viewing another user's profile, always show the outline icon.
           const routeParams = route.params || {};
           if (routeParams.isOtherProfile) {
             iconName = 'person-outline';

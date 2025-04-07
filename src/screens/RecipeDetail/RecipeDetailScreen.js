@@ -1,4 +1,3 @@
-// src/screens/RecipeDetail/RecipeDetailScreen.js
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -26,24 +25,23 @@ export default function RecipeDetailScreen({ route, navigation }) {
   const auth = getAuth();
   const currentUser = auth.currentUser;
 
-  // Local state for recipe data to reflect real-time updates.
+  
   const [recipeData, setRecipeData] = useState(recipe);
   const [activeTab, setActiveTab] = useState('ingredients');
   const [showMenu, setShowMenu] = useState(false);
 
-  // Modals for Share and Rate Recipe
+
   const [rateModalVisible, setRateModalVisible] = useState(false);
   const [shareModalVisible, setShareModalVisible] = useState(false);
 
-  // Rating state
+
   const [selectedRating, setSelectedRating] = useState(0);
-  // For clipboard feedback
+
   const [linkCopied, setLinkCopied] = useState(false);
 
-  // New state for follow functionality
+
   const [isFollowing, setIsFollowing] = useState(false);
 
-  // Subscribe to changes in the recipe document
   useEffect(() => {
     const recipeRef = doc(db, 'recipes', recipe.id);
     const unsubscribe = onSnapshot(recipeRef, (docSnapshot) => {
@@ -54,7 +52,7 @@ export default function RecipeDetailScreen({ route, navigation }) {
     return () => unsubscribe();
   }, [recipe.id]);
 
-  // Fetch chef follow status if the chef is not the current user.
+
   useEffect(() => {
     if (recipeData.createdBy && recipeData.createdBy !== currentUser.uid) {
       const chefDocRef = doc(db, 'users', recipeData.createdBy);
@@ -78,10 +76,7 @@ export default function RecipeDetailScreen({ route, navigation }) {
     { name: 'Tomatoes', quantity: '500g' },
     { name: 'Cabbage', quantity: '300g' },
   ];
-  const procedureData = recipeData.procedure || [
-    'Step 1: Prepare the vegetables.',
-    'Step 2: Cook on medium heat until done.',
-  ];
+ 
 
   // Determine whether the current user has saved the recipe.
   const isSaved =
@@ -274,7 +269,7 @@ export default function RecipeDetailScreen({ route, navigation }) {
             source={
               recipeData?.chefPhoto
                 ? { uri: recipeData.chefPhoto }
-                : require('../../../assets/images/recipes/food.jpg')
+                : require('../../../assets/images/avatar.jpeg')
             }
             style={styles.chefAvatar}
           />

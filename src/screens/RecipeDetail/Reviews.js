@@ -18,7 +18,7 @@ import {
   serverTimestamp
 } from 'firebase/firestore';
 import { db } from '../../services/firebase';
-import styles from './ReviewStyle'; // or define inline styles
+import styles from './ReviewStyle'; 
 
 export default function ReviewsScreen({ route, navigation }) {
   const { recipeId } = route.params;
@@ -28,7 +28,7 @@ export default function ReviewsScreen({ route, navigation }) {
   const [reviews, setReviews] = useState([]);
   const [comment, setComment] = useState('');
 
-  // Listen for changes in the subcollection "recipes/{recipeId}/reviews"
+
   useEffect(() => {
     const reviewsRef = collection(db, 'recipes', recipeId, 'reviews');
     const q = query(reviewsRef, orderBy('timestamp', 'asc'));
@@ -52,7 +52,7 @@ export default function ReviewsScreen({ route, navigation }) {
       await addDoc(collection(db, 'recipes', recipeId, 'reviews'), {
         userId: currentUser.uid,
         userName: currentUser.displayName || 'Unknown User',
-        userAvatar: currentUser.photoURL || '', // if you have user avatars
+        userAvatar: currentUser.photoURL || '', 
         comment: comment.trim(),
         timestamp: serverTimestamp(),
       });
@@ -64,7 +64,6 @@ export default function ReviewsScreen({ route, navigation }) {
 
   // Render each review item
   const renderReviewItem = ({ item }) => {
-    // Convert Firestore timestamp to a readable date/time
     const dateString = item.timestamp
       ? new Date(item.timestamp.toDate()).toLocaleString()
       : '';

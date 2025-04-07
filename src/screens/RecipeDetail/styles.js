@@ -1,8 +1,4 @@
-// src/screens/RecipeDetail/styles.js
-import { StyleSheet, Dimensions } from 'react-native';
-import { Colors, Fonts, FontSizes } from '../../constants/theme';
-
-const { width } = Dimensions.get('window');
+import { StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {

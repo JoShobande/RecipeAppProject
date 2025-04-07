@@ -13,21 +13,20 @@ import { collection, addDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../../services/firebase';
 import { useAuthContext } from '../../context/AuthContext';
-import { Colors, Fonts, FontSizes } from '../../constants/theme';
 import styles from './styles';
 
-export default function CreateScreen({ navigation }) {
+export default function CreateScreen() {
   const { user } = useAuthContext();
   const auth = getAuth();
   
   // Form state
   const [name, setName] = useState('');
-  const [category, setCategory] = useState(''); // initial category empty
+  const [category, setCategory] = useState(''); 
   const [time, setTime] = useState('');
   const [procedure, setProcedure] = useState('');
   const [servings, setServings] = useState('');
   
-  // Dropdown state for category using react-native-dropdown-picker
+ 
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
     { label: 'Select Category', value: '' },
@@ -57,7 +56,6 @@ export default function CreateScreen({ navigation }) {
   };
   
   const handleSubmit = async () => {
-    // Validate required fields
     if (
       name.trim() === '' ||
       category.trim() === '' ||
@@ -90,7 +88,6 @@ export default function CreateScreen({ navigation }) {
       
       await addDoc(collection(db, 'recipes'), recipeData);
       Alert.alert('Success', 'Recipe created successfully!');
-      // Clear form fields
       setName('');
       setCategory('');
       setTime('');
@@ -108,7 +105,7 @@ export default function CreateScreen({ navigation }) {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
-      nestedScrollEnabled={true} // Enable nested scrolling
+      nestedScrollEnabled={true}
     >
       <Text style={styles.title}>Create a New Recipe</Text>
       
@@ -137,7 +134,7 @@ export default function CreateScreen({ navigation }) {
           containerStyle={{ marginBottom: 20 }}
           style={styles.dropdown}
           dropDownContainerStyle={styles.dropdownContainer}
-          listMode="SCROLLVIEW" // Use SCROLLVIEW to avoid nesting VirtualizedList inside a ScrollView
+          listMode="SCROLLVIEW"
         />
       </View>
       

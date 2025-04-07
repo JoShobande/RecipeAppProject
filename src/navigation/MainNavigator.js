@@ -17,9 +17,6 @@ const Stack = createStackNavigator();
 function MainTabs() {
   return (
     <Tab.Navigator
-      // screenOptions={{
-      //   headerShown: false,
-      // }}
       tabBar={(props) => <CustomTabBar {...props} />}
     >
       <Tab.Screen name="Home" component={HomeScreen} />

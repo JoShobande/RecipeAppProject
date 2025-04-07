@@ -13,7 +13,7 @@ const { width, height } = Dimensions.get('window');
 
 export default function SplashScreen({ navigation }) {
   const handleStartCooking = () => {
-    navigation.navigate('SignIn'); 
+    navigation?.navigate('SignIn'); 
   };
 
   return (
@@ -23,7 +23,6 @@ export default function SplashScreen({ navigation }) {
         style={styles.imageBackground}
         resizeMode="cover"
       >
-        {/* Dark overlay */}
         <View style={styles.overlay} />
 
         <View style={styles.contentContainer}>

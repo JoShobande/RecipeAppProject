@@ -79,7 +79,6 @@ export default StyleSheet.create({
     fontSize: FontSizes.medium,
     fontFamily: Fonts.bold,
   },
-  // Styles for the dropdown picker
   dropdown: {
     backgroundColor: Colors.white,
     borderColor: Colors.border,

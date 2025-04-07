@@ -1,15 +1,12 @@
-// src/screens/Home/styles.js
 import { StyleSheet } from 'react-native';
 import { Colors, Fonts, FontSizes } from '../../constants/theme';
 
 export default StyleSheet.create({
-  /* HEADER & SEARCH */
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 20,
-    // No additional horizontal padding—uses FlatList's contentContainerStyle.
   },
   greeting: {
     fontSize: 22,
@@ -38,13 +35,13 @@ export default StyleSheet.create({
     // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF', // use white or a slightly different color
+    backgroundColor: '#FFFFFF', 
     borderRadius: 12,
     paddingHorizontal: 10,
     paddingVertical: 8,
     marginBottom: 20,
     borderWidth: 1,
-    borderColor: '#D1D5DB', // light gray border for contrast
+    borderColor: '#D1D5DB',
   },
   searchIcon: {
     marginRight: 8,
@@ -61,20 +58,17 @@ export default StyleSheet.create({
     color: Colors.primary,
     marginVertical: 15,
     fontWeight:700
-    // Removed any left margin so it aligns with the grid.
   },
   popularListContainer: {
     paddingBottom: 15,
-    // No extra horizontal padding here.
   },
 
-  /* RECIPE CARD */
   cardContainer: {
-    backgroundColor: '#E5E5E5', // Darker grey background
+    backgroundColor: '#E5E5E5',
     borderRadius: 16,
     alignItems: 'center',
-    paddingTop: 40, // Space for overlapping circular image
-    paddingBottom: 20, // Increased bottom padding for bottom row
+    paddingTop: 40,
+    paddingBottom: 20, 
     paddingHorizontal: 10,
     position: 'relative',
     minHeight: 150,
@@ -82,7 +76,7 @@ export default StyleSheet.create({
   },
   cardImageWrapper: {
     position: 'absolute',
-    top: -40, // Protrude 40px above the card
+    top: -40,
     alignItems: 'center',
     justifyContent: 'center',
     width: 80,
@@ -115,7 +109,7 @@ export default StyleSheet.create({
     color: Colors.black,
   },
   cardInfo: {
-    marginTop: 0, // Dish title directly below the image
+    marginTop: 0, 
     alignItems: 'center',
     width: '100%',
   },
@@ -127,7 +121,6 @@ export default StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 5,
   },
-  /* Bottom row absolutely positioned at the bottom of the card */
   cardBottomRow: {
     position: 'absolute',
     bottom: 10,
@@ -172,10 +165,9 @@ export default StyleSheet.create({
     marginLeft:5
   },
   
-  /* Filter Modal */
   filterModalContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)', // semi-transparent overlay
+    backgroundColor: 'rgba(0,0,0,0.5)', 
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -236,9 +228,8 @@ export default StyleSheet.create({
     fontWeight: 700
   },
   categoryContainer: {
-    marginBottom: 20,  // space below categories
+    marginBottom: 20,
     flexDirection: 'row',
-    // any additional styling you want
   },
   categoryItem: {
     backgroundColor: '#F3F4F6',

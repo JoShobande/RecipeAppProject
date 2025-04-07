@@ -1,4 +1,3 @@
-// src/context/AuthContext.js
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import {
   onAuthStateChanged,
@@ -12,7 +11,6 @@ import { auth, db } from '../services/firebase';
 
 const AuthContext = createContext(null);
 
-// Helper function to create a Firestore user document if it doesn't exist.
 const createUserDocument = async (user, additionalData = {}) => {
   if (!user) return;
   const userRef = doc(db, 'users', user.uid);
@@ -43,6 +41,7 @@ const createUserDocument = async (user, additionalData = {}) => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [signUpSuccess, setSignUpSuccess] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -51,15 +50,13 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  // Updated signUp now accepts firstName and lastName.
   const signUp = async (email, password, firstName, lastName) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const fullName = `${firstName} ${lastName}`;
     await updateProfile(userCredential.user, { displayName: fullName });
-    // Create a Firestore user document with firstName and lastName.
     await createUserDocument(userCredential.user, { firstName, lastName });
-    // Optionally, sign the user out after sign-up if desired.
     await signOut(auth);
+    setSignUpSuccess(true);
     return userCredential;
   };
 
@@ -72,7 +69,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, signUp, signIn, logOut }}>
+    <AuthContext.Provider value={{ user, signUp, signIn, logOut, signUpSuccess, setSignUpSuccess }}>
       {children}
     </AuthContext.Provider>
   );

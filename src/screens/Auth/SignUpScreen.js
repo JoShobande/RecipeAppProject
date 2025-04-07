@@ -75,9 +75,7 @@ export default function SignUpScreen() {
     if (!validateFields()) return;
     setIsLoading(true);
     try {
-      // Pass firstName and lastName to signUp.
       await signUp(email, password, firstName, lastName);
-      setIsModalVisible(true);
     } catch (error) {
       Alert.alert('Sign Up Error', error.message);
     } finally {
@@ -86,7 +84,7 @@ export default function SignUpScreen() {
   };
 
   const handleGoToSignIn = async () => {
-    setIsModalVisible(false);
+    // setIsModalVisible(false);
     navigation.navigate('SignIn');
   };
 

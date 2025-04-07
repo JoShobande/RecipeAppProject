@@ -1,4 +1,3 @@
-// src/screens/Favourites/FavouritesScreen.js
 import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, ActivityIndicator, StyleSheet, Dimensions } from "react-native";
 import { collection, onSnapshot } from "firebase/firestore";
@@ -24,7 +23,6 @@ const FavouritesScreen = () => {
           id: doc.id,
           ...doc.data(),
         }));
-        // Filter for recipes saved by the current user.
         const userSavedRecipes = fetchedRecipes.filter(
           (recipe) =>
             recipe.savedBy && Array.isArray(recipe.savedBy) && recipe.savedBy.includes(currentUser.uid)
