@@ -74,9 +74,9 @@ export default function ProfileScreen() {
   );
 
 
-  const displayedData = (!isOtherProfile || activeTab === 'recipes')
-  ? userRecipes
-  : savedRecipes;
+  const displayedData = isOtherProfile 
+  ? userRecipes 
+  : (activeTab === 'recipes' ? userRecipes : savedRecipes);
 
   if (loading ) {
     return (
